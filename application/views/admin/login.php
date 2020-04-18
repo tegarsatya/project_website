@@ -32,18 +32,29 @@
 			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong> Enter Details To Login </strong>
+						<center><strong> Masukan Username dan password</strong></center>
 					</div>
 					<div class="panel-body">
-						<form role="form">
+						<?php
+
+						if ($this->session->flashdata('sukses')) {
+							echo '<div class="alert alert-success">';
+							echo $this->session->flashdata('sukses');
+							echo '</div>';
+						}
+
+						// Cetak validasi error
+						echo validation_errors('<div class="alert alert-success">', '</div>');
+						?>
+						<form role="form" method="post" action="<?php echo base_url('login') ?>">
 							<br />
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-tag"></i></span>
-								<input type="text" class="form-control" placeholder="Your Username " />
+								<input type="text" name="username" class="form-control" placeholder="Your Username " />
 							</div>
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-								<input type="password" class="form-control" placeholder="Your Password" />
+								<input type="password" name="password" class="form-control" placeholder="Your Password" />
 							</div>
 							<div class="form-group">
 								<label class="checkbox-inline">
@@ -53,8 +64,7 @@
 									<a href="#">Forget password ? </a>
 								</span>
 							</div>
-
-							<a href="index.html" class="btn btn-primary ">Login Now</a>
+							<input type="submit" name="submit" value="Login" class="btn btn-primary">
 							<hr />
 						</form>
 					</div>
@@ -65,14 +75,14 @@
 	</div>
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
-		<script src="<?= base_url() ?>assets/admin/assets/js/jquery-1.10.2.js"></script>
-		<!-- BOOTSTRAP SCRIPTS -->
-		<script src="<?= base_url() ?>assets/admin/assets/js/bootstrap.min.js"></script>
-		<!-- METISMENU SCRIPTS -->
-		<script src="<?= base_url() ?>assets/admin/assets/js/jquery.metisMenu.js"></script>
-		<!-- CUSTOM SCRIPTS -->
-		<script src="<?= base_url() ?>assets/admin/assets/js/custom.js"></script>
+	<script src="<?= base_url() ?>assets/admin/assets/js/jquery-1.10.2.js"></script>
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="<?= base_url() ?>assets/admin/assets/js/bootstrap.min.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="<?= base_url() ?>assets/admin/assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script src="<?= base_url() ?>assets/admin/assets/js/custom.js"></script>
 
-	</body>
+</body>
 
 </html>

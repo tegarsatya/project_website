@@ -602,4 +602,5 @@
         </div>
 
       </div>
-    </section><!-- End Cont
+		</section>
+  </main>
