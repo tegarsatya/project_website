@@ -25,9 +25,8 @@
 		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 	});
 </script>
-
 <?php
-// Error
+// Erro
 if (isset($error)) {
 	echo '<div class="alert alert-warning">';
 	echo $error;
@@ -38,47 +37,8 @@ if (isset($error)) {
 echo validation_errors('<div class="alert alert-success">', '</div>');
 
 // Form
-echo form_open_multipart('admin/berita/tambah');
+echo form_open_multipart('admin/visi_misi/edit/' . $visi_misi->id_vm);
 ?>
-<div class="col-md-8">
-	<div class="form-group form-group-lg">
-		<label>Nama berita</label>
-		<input type="text" name="nama_berita" placeholder="Nama berita" value="<?php echo set_value('nama_berita') ?>" required class="form-control">
-	</div>
-</div>
-
-<div class="col-md-4">
-	<div class="form-group form-group-lg">
-		<label>Status Berita</label>
-		<select name="status_berita" class="form-control">
-			<option value="Publish">Publikasikan</option>
-			<option value="Draft">Simpan sebagai Draft</option>
-		</select>
-	</div>
-</div>
-
-<div class="col-md-6">
-	<div class="form-group">
-		<label>Kategori Berita</label>
-		<select name="id_kategori_berita" class="form-control">
-			<?php foreach ($kategori as $kategori) { ?>
-				<option value="<?php echo $kategori->id_kategori_berita ?>">
-					<?php echo $kategori->nama_kategori_berita ?></option>
-			<?php } ?>
-		</select>
-	</div>
-</div>
-
-
-<div class="col-md-6">
-	<div class="form-group">
-		<label>Jenis Berita</label>
-		<select name="jenis_berita" class="form-control">
-			<option value="Berita">Berita</option>
-			<option value="pemberitahuan">Pemberitahuan</option>
-		</select>
-	</div>
-</div>
 
 <div class="col-md-12">
 
@@ -88,10 +48,10 @@ echo form_open_multipart('admin/berita/tambah');
 	</div>
 
 	<div class="form-group">
-		<label>Keterangan</label>
-		<textarea name="keterangan" class="form-control" placeholder="Keterangan" id="keterangan"><?php echo set_value('keterangan') ?></textarea>
+		<label>Isi Visi & Misi</label>
+		<textarea name="isi" class="form-control" placeholder="isi" id="keterangan"><?php echo set_value('isi') ?></textarea>
 	</div>
-
+	
 	<div class="form-group">
 		<input type="submit" name="submit" value="Simpan Data" class="btn btn-primary btn-lg">
 		<input type="reset" name="reset" value="Reset" class="btn btn-default btn-lg">

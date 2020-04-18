@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Apr 2020 pada 10.36
+-- Generation Time: 18 Apr 2020 pada 23.51
 -- Versi Server: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -42,6 +42,14 @@ CREATE TABLE `berita` (
   `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `berita`
+--
+
+INSERT INTO `berita` (`id_berita`, `id_user`, `id_kategori_berita`, `slug_berita`, `nama_berita`, `keterangan`, `jenis_berita`, `status_berita`, `gambar`, `tanggal_post`, `tanggal`) VALUES
+(1, 4, 3, 'libur-sekolah', 'Libur Sekolah', '<p>adasd</p>', 'Berita', 'Publish', '20861573_798626526983969_4381090577394554098_o9.jpg', '2020-04-18 22:35:18', '2020-04-18 20:35:18'),
+(2, 4, 9, 'jadwal-uas', 'JAdwal Uas', '<p>Uas Online</p>', 'pemberitahuan', 'Publish', '46250724_1147018012130007_4297659695033745408_o7.jpg', '2020-04-18 22:36:44', '2020-04-18 20:40:52');
+
 -- --------------------------------------------------------
 
 --
@@ -62,7 +70,8 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nama_guru`, `alamat`, `pelajaran`, `tanggal`, `gambar`) VALUES
-(2, 'Tegar Satya Negara, S.T', 'pekalongan', 'Komputer', '2020-04-18 08:29:55', 'tegar5.jpg');
+(2, 'Tegar Satya Negara, S.T., M.T', 'pekalongan Jawa Tengah', 'Pemrograman Web', '2020-04-18 20:24:33', 'tegar6.jpg'),
+(3, 'Ayang Soemayah, S.Kom,', 'Garut Jawa Barat', 'Ngopi', '2020-04-18 20:25:26', 'aa2.jpg');
 
 -- --------------------------------------------------------
 
@@ -87,7 +96,8 @@ INSERT INTO `kategori_berita` (`id_kategori_berita`, `slug_kategori_berita`, `na
 (4, 'ruang-kelas-sekolah', 'Ruang Kelas Sekolah', 'Fasilitas Sekolah', 2),
 (5, 'perpus-sokolah', 'Perpus Sokolah ', 'Fasilitas Sekolah', 3),
 (6, 'osis-sekolah', 'Osis Sekolah', 'Organisasi Sekolahan', 4),
-(7, 'prestasi-sekolahan', 'Prestasi Sekolahan', 'Prestasi Sekolah', 5);
+(7, 'prestasi-sekolahan', 'Prestasi Sekolahan', 'Prestasi Sekolah', 5),
+(9, 'kegiatan-sekolahan', 'Kegiatan Sekolahan', 'Berita Terbaru Terkait sekolhan', 6);
 
 -- --------------------------------------------------------
 
@@ -208,6 +218,19 @@ CREATE TABLE `video` (
 INSERT INTO `video` (`id_video`, `judul`, `posisi`, `keterangan`, `video`, `urutan`, `id_user`, `tanggal`) VALUES
 (3, 'cdsac', 'Video', NULL, 'scdsacsa', 0, 3, '2020-04-16 06:40:40');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `visi_misi`
+--
+
+CREATE TABLE `visi_misi` (
+  `id_vm` int(11) NOT NULL,
+  `isi` text NOT NULL,
+  `gambar` varchar(300) NOT NULL,
+  `tanggal` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -256,6 +279,12 @@ ALTER TABLE `video`
   ADD PRIMARY KEY (`id_video`);
 
 --
+-- Indexes for table `visi_misi`
+--
+ALTER TABLE `visi_misi`
+  ADD PRIMARY KEY (`id_vm`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -263,19 +292,19 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kategori_berita`
 --
 ALTER TABLE `kategori_berita`
-  MODIFY `id_kategori_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kategori_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `konfigurasi`
@@ -300,6 +329,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `video`
   MODIFY `id_video` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `visi_misi`
+--
+ALTER TABLE `visi_misi`
+  MODIFY `id_vm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

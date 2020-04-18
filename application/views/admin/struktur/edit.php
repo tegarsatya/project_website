@@ -55,7 +55,7 @@ echo form_open_multipart('admin/struktur/edit/' . $struktur->id_str);
 
 	<div class="form-group">
 		<label>Keterangan</label>
-		<textarea name="isi" class="form-control" placeholder="isi Dari Struktur Organisasi" id="isi"><?php echo set_value('isi') ?></textarea>
+		<textarea name="isi" class="form-control" placeholder="isi Dari Struktur Organisasi" id="keterangan"><?php echo set_value('isi') ?></textarea>
 	</div>
 
 	<div class="form-group">

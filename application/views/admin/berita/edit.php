@@ -78,9 +78,9 @@ echo form_open_multipart('admin/berita/edit/' . $berita->id_berita);
 		<label>Jenis berita</label>
 		<select name="jenis_berita" class="form-control">
 			<option value="Berita">Berita</option>
-			<option value="Profil" <?php if ($berita->jenis_berita == "Profil") {
+			<option value="pemberitahuan" <?php if ($berita->jenis_berita == "pemberitahuan") {
 										echo "selected";
-									} ?>>Profil</option>
+									} ?>>pemberitahuan</option>
 		</select>
 	</div>
 </div>

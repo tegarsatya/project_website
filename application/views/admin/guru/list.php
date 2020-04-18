@@ -35,7 +35,7 @@
 				</td>
 				<td>
 					<center>
-						<a href="<?php echo base_url('admin/struktur/edit/' . $guru->id_guru) ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+						<a href="<?php echo base_url('admin/guru/edit/' . $guru->id_guru) ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
 						<?php include('delete.php') ?>
 					</center>
 				</td>

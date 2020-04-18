@@ -1,26 +1,24 @@
 <?php
 
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Guru extends CI_Controller
-{
+class Visi_misi extends CI_Controller {
 
-	// Load database
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('guru_model');
+		$this->load->model('visi_misi_model');
 	}
 
 	// menampilkan data/listing
 	public function index()
 	{
-		$guru = $this->guru_model->listing();
+		$visi_misi = $this->visi_misi_model->listing();
 
 		$data = array(
-			'title'		 => 'Manajemen Guru Aktif Mengajar',
-			'guru'   	 =>  $guru,
-			'isi'  		 => 'admin/guru/list'
+			'title'		 => 'Manajemen Visi Misi',
+			'visi_misi'  =>  $visi_misi,
+			'isi'  		 => 'admin/visi_misi/list'
 		);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
@@ -32,32 +30,14 @@ class Guru extends CI_Controller
 		$v = $this->form_validation;
 
 		$v->set_rules(
-			'nama_guru',
-			'Nama Guru',
-			'required|is_unique[guru.nama_guru]',
+			'isi',
+			'Isi Visi& Misi Harus Di isi',
+			'required|is_unique[visi_misi.isi]',
 			array(
-				'required'		=> 'nama guru harus diisi beserta gelarnya',
-				'is_unique'		=> 'Nama Guru: <strong>' . $this->input->post('nama_guru') .
-					'</strong> sudah ada. inputkan nama guru yang lain'
+				'required'		=> 'Isi Visi & Misi Dengan Benar',
+				'is_unique'		=> 'Isi Visi & Misi: <strong>' . $this->input->post('isi') .
+					'</strong>'
 			)
-		);
-
-		$v->set_rules(
-			'alamat',
-			'Alamat Guru ',
-			'required|is_unique[guru.alamat]',
-			array(
-				'required'		=> 'Alamat Guru Di isi Dengan Lengkap',
-				'is_unique'		=> 'Alamat guru: <strong>' . $this->input->post('alamat') .
-					'</strong> Alamat Kurang Lengkap'
-			)
-		);
-
-		$v->set_rules(
-			'pelajaran',
-			'Mata pelajaran yang di ampuh ',
-			'required',
-			array('required'		=> 'Mata Pelajaran yang di ampuh Guru Harus di isi')
 		);
 
 		if ($v->run()) {
@@ -69,9 +49,9 @@ class Guru extends CI_Controller
 				// End validasi
 
 				$data = array(
-					'title'		=> 'Tambah Guru',
+					'title'		=> 'Tambah Visi & Misi',
 					'error'		=> $this->upload->display_errors(),
-					'isi'		=> 'admin/guru/tambah'
+					'isi'		=> 'admin/visi_misi/tambah'
 				);
 				$this->load->view('admin/layout/wrapper', $data);
 				// Masuk database
@@ -95,51 +75,36 @@ class Guru extends CI_Controller
 				// Proses ke database
 				$i = $this->input;
 				$data = array(
-					'nama_guru'				=> $i->post('nama_guru'),
-					'alamat'				=> $i->post('alamat'),
-					'pelajaran'				=> $i->post('pelajaran'),
+					'isi'					=> $i->post('isi'),
 					'gambar'				=> $upload_data['uploads']['file_name']
 				);
-				$this->guru_model->tambah($data);
-				$this->session->set_flashdata('sukses', 'Berita telah ditambah');
-				redirect(base_url('admin/guru'));
+				$this->visi_misi_model->tambah($data);
+				$this->session->set_flashdata('sukses', 'Visi  Misi Berhasil dtambahkan');
+				redirect(base_url('admin/visi_misi'));
 			}
 		}
 		// End masuk database
 		$data = array(
-			'title'		=> 'Tambah Guru',
-			'isi'		=> 'admin/guru/tambah'
+			'title'		=> 'Tambah Visi & Misi',
+			'isi'		=> 'admin/visi_misi/tambah'
 		);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
 
 	// Edit Data
-	public function edit($id_guru)
+
+	public function edit($id_vm)
 	{
-		$guru		= $this->guru_model->detail($id_guru);
+		$visi_misi	= $this->visi_misi_model->detail($id_vm);
 
 		// Validasi
 		$v = $this->form_validation;
 
 		$v->set_rules(
-			'nama_guru',
-			'Nama Guru',
+			'isi',
+			'isi Dari Visi & Misi',
 			'required',
-			array('required'		=> 'nama guru harus diisi')
-		);
-
-		$v->set_rules(
-			'alamat',
-			'Alamat Guru Harus di isi',
-			'required',
-			array('required'		=> 'alamat guru harus diisi')
-		);
-
-		$v->set_rules(
-			'pelajaran',
-			'Alamat Guru Harus di isi',
-			'required',
-			array('required'		=> 'Mata Pelajaran Guru Yang diampuh Harus di isi')
+			array('required'		=> 'Isi Visi & Misi harus diisi')
 		);
 
 		if ($v->run()) {
@@ -152,10 +117,10 @@ class Guru extends CI_Controller
 					// End validasi
 
 					$data = array(
-						'title'		=> 'Edit Foto guru',
-						'guru	'	=> $guru,
+						'title'		=> 'Edit Visi & Misi',
+						'visi_misi'	=> $visi_misi,
 						'error'		=> $this->upload->display_errors(),
-						'isi'		=> 'admin/guru/edit'
+						'isi'		=> 'admin/visi_misi/edit'
 					);
 					$this->load->view('admin/layout/wrapper', $data);
 					// Masuk database
@@ -179,48 +144,46 @@ class Guru extends CI_Controller
 					// Proses ke database
 					$i = $this->input;
 					$data = array(
-						'id_guru'				=> $id_guru,
-						'nama_guru'				=> $i->post('nama_guru'),
-						'alamat'				=> $i->post('alamat'),
-						'pelajaran'				=> $i->post('pelajaran'),
+						'id_vm'					=> $id_vm,
+						'isi'					=> $i->post('isi'),
 						'gambar'				=> $upload_data['uploads']['file_name']
 					);
-					$this->guru_model->edit($data);
-					$this->session->set_flashdata('sukses', 'Data Guru telah diedit');
-					redirect(base_url('admin/guru'));
+					$this->visi_misi_model->edit($data);
+					$this->session->set_flashdata('sukses', 'Visi & Misi telah diedit');
+					redirect(base_url('admin/visi_misi'));
 				}
 			} else {
 				// Proses ke database
 				$i = $this->input;
 				$data = array(
-					'id_guru'				=> $id_guru,
-					'nama_guru'				=> $i->post('nama_guru'),
-					'alamat'				=> $i->post('alamat'),
-					'pelajaran'				=> $i->post('pelajaran'),
+					'id_vm'					=> $id_vm,
+					'isi'					=> $i->post('isi'),
 					'gambar'				=> $upload_data['uploads']['file_name']
 				);
-				$this->guru_model->edit($data);
-				$this->session->set_flashdata('sukses', 'Data Guru telah diedit');
-				redirect(base_url('admin/guru'));
+				$this->visi_misi_model->edit($data);
+				$this->session->set_flashdata('sukses', 'Visi & Misi telah diedit');
+				redirect(base_url('admin/visi_misi'));
 			}
 		}
 		// End masuk database
 		$data = array(
-			'title'		=> 'Edit Data Guru',
-			'guru'		=> $guru,
-			'isi'		=> 'admin/guru/edit'
+			'title'		=> 'Edit Visi & Misi',
+			'visi_misi'	=> $visi_misi,
+			'isi'		=> 'admin/visi_misi/edit'
 		);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
 
 	// Delete
-	public function delete($id_guru)
+	public function delete($id_vm)
 	{
 		$this->simple_login->cek_login();
-		$data = array('id_guru'	=> $id_guru);
-		$this->guru_model->delete($data);
-		$this->session->set_flashdata('sukses', 'Data telah dihapus');
-		redirect(base_url('admin/guru'));
+		$data = array('id_vm'	=> $id_vm);
+		$this->visi_misi_model->delete($data);
+		$this->session->set_flashdata('sukses', 'Data telah didelete');
+		redirect(base_url('admin/visi_misi'));
 	}
+
 }
-/* End of file Guru.php */
+
+/* End of file Controllername.php */

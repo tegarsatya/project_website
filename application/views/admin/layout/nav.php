@@ -16,8 +16,8 @@
 			<!-- visi misi -->
 			<li><a href=""><i class="fa fa-book"></i> Visi Misi <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="<?= base_url('') ?>">Data VISI MISI</a></li>
-					<li><a href="<?= base_url('') ?>">Tambah Daftar VISI MISI</a></li>
+					<li><a href="<?= base_url('admin/visi_misi') ?>">Data VISI MISI</a></li>
+					<li><a href="<?= base_url('admin/visi_misi/tambah') ?>">Tambah Daftar VISI MISI</a></li>
 				</ul>
 			</li>
 			<!-- end vivi misi -->
