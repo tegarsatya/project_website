@@ -14,6 +14,10 @@ class Dasbor extends CI_Controller
 		$this->load->model('kategori_berita_model');
 		$this->load->model('konfigurasi_model');
 		$this->load->model('struktur_model');
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan', $url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->simple_login->cek_login($pengalihan);
 	}
 
 
