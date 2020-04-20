@@ -54,7 +54,7 @@ class Struktur extends CI_Controller {
 				// End validasi
 
 				$data = array(
-					'title'		=> 'Tambah Guru',
+					'title'		=> 'Tambah Struktur',
 					'error'		=> $this->upload->display_errors(),
 					'isi'		=> 'admin/struktur/tambah'
 				);
