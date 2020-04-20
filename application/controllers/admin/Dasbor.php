@@ -12,25 +12,31 @@ class Dasbor extends CI_Controller
 		$this->load->model('video_model');
 		$this->load->model('berita_model');
 		$this->load->model('kategori_berita_model');
+		$this->load->model('konfigurasi_model');
 		$this->load->model('struktur_model');
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan', $url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->simple_login->cek_login($pengalihan);
 	}
 
-	// Index
+
 	public function index()
 	{
-		$site				= $this->konfigurasi_model->listing();
+		$site 				= $this->konfigurasi_model->listing();
+		$user				= $this->user_model->listing();
 		$user				= $this->user_model->listing();
 		$video				= $this->video_model->listing();
 		$berita				= $this->berita_model->listing();
+		$struktur			= $this->struktur_model->listing();
 		$kategori_berita	= $this->kategori_berita_model->listing();
-		$struktur			= $this->struktur_model->listting();
 
 		$data = array(
-			'title'				=> 'Dashboard Page - ' . $site['namaweb'],
+			'title'				=> 'Dashboard Admin - ',
 			'user'				=> $user,
 			'video'				=> $video,
-			'berita'			=> $berita,
 			'struktur'			=> $struktur,
+			'berita'			=> $berita,
 			'kategori_berita'	=> $kategori_berita,
 			'isi'				=> 'admin/dasbor/list'
 		);
@@ -373,3 +379,4 @@ class Dasbor extends CI_Controller
 		$this->load->view('admin/layout/wrapper', $data);
 	}
 }
+/* End of file ControllernameDasbor.php */
