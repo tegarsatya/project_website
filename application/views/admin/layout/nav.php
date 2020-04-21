@@ -55,6 +55,13 @@
 				</ul>
 			</li>
 
+				<!-- Kontak -->
+			<li><a href="#"><i class="fa fa-users"></i> Data Kontak/Pesan<span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li><a href="<?php echo base_url('admin/kontak') ?>">Data Kontak</a></li>
+				</ul>
+			</li>
+
 			<!-- Modul Konfigurasi -->
 			<li><a href="#"><i class="fa fa-wrench"></i> Konfigurasi Website<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">

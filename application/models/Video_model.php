@@ -21,6 +21,23 @@ class Video_model extends CI_Model
 		return $query->result();
 	}
 
+	public function total_video() {
+		$this->db->select('*');
+		$this->db->from('video');
+		$this->db->order_by('id_video','DESC');
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+	// Listing semua
+	public function total() {
+		$this->db->select('COUNT(*) AS total');
+		$this->db->from('video');
+		$this->db->order_by('id_video','DESC');
+		$query = $this->db->get();
+		return $query->row();
+	}	
+
 	//Home video
 	public function home()
 	{

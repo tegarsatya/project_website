@@ -10,11 +10,11 @@
 
  			<nav class="nav-menu d-none d-lg-block">
  				<ul>
- 					<li class="active"><a href="#header">Home</a></li>
- 					<li><a href="#about">Struktur Organisasi</a></li>
- 					<li><a href="#services">Visi & Misi</a></li>
- 					<li><a href="#portfolio">Sejarah</a></li>
- 					<li><a href="">Video</a></li>
+ 					<li class="active"><a href="<?= base_url('home')?>">Home</a></li>
+ 					<li><a href="#">Struktur Organisasi</a></li>
+ 					<li><a href="#">Visi & Misi</a></li>
+ 					<li><a href="#">Sejarah</a></li>
+ 					<li><a href="<?= base_url('video')?>">Video</a></li>
  					<li class="drop-down"><a href="">Berita</a>
  						<ul>
  							<li class="drop-down"><a href="#">Program Prestasi Sekolah</a>
